@@ -2,7 +2,7 @@
     "name": "zuco/padronic",
     "description": "Contains command files that automatically create multiple files for your default laravel project.",
     "type": "composer-plugin",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "require": {
         "laravel/framework": "^10",
         "illuminate/filesystem": "^10.41"
