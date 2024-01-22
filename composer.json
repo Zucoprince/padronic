@@ -4,7 +4,6 @@
     "type": "composer-plugin",
     "version": "1.0.1",
     "require": {
-        "laravel/framework": "^10",
         "illuminate/filesystem": "^10.41"
     },
     "license": "GPL-3.0-or-later",
