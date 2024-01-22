@@ -1,0 +1,23 @@
+{
+    "name": "zuco/padronic",
+    "description": "Contains command files that automatically create multiple files for your default laravel project.",
+    "type": "composer-plugin",
+    "version": "1.0.0",
+    "require": {
+        "laravel/laravel": "^10.3",
+        "illuminate/filesystem": "^10.41"
+    },
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Zuco\\Padronic\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pedro Zucolo",
+            "email": "pedro.zucolo@outlook.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
