@@ -10,6 +10,7 @@ class PadronicServiceProvider extends ServiceProvider
     public function register()
     {
         $this->addProviderToConfig();
+        $this->boot();
     }
 
     public function boot()
