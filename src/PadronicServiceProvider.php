@@ -31,7 +31,7 @@ class PadronicServiceProvider extends ServiceProvider
             File::copy($file->getPathname(), $commandsDir . '/' . $file->getFilename());
             $change = $commandsDir . '/' . $file->getFilename();
             $contents = file_get_contents($change);
-            $put = str_replace("namespace Zucoprince\Padronic\Commands;", "namespace App\Console\Commands", $contents);
+            $put = str_replace("namespace Zucoprince\Padronic\Commands;", "namespace App\Console\Commands;", $contents);
 
             file_put_contents($file, $put);
         }
