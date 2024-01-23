@@ -32,10 +32,5 @@
             "@php artisan vendor:publish --provider=Zucoprince\\Padronic\\PadronicServiceProvider",
             "@php artisan optimize"
         ]
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
     }
 }
