@@ -30,6 +30,7 @@
     "scripts": {
         "post-autoload-dump": [
             "@php artisan vendor:publish --provider=Zucoprince\\Padronic\\PadronicServiceProvider",
+            "@php artisan vendor:publish --tag=padronic-commands",
             "@php artisan optimize"
         ]
     }

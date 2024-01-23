@@ -2,6 +2,7 @@
 
 namespace Zucoprince\Padronic;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class PadronicServiceProvider extends ServiceProvider
@@ -13,10 +14,14 @@ class PadronicServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->addProviderToConfig();
+        $commandsDir = base_path('app/Console/Commands');
+
+        if (!File::isDirectory($commandsDir)) {
+            File::makeDirectory($commandsDir, 0755, true);
+        }
 
         $this->publishes([
-            __DIR__ . '/Commands' => app_path('Console/Commands'),
+            __DIR__ . '/Commands' => $commandsDir,
         ], 'padronic-commands');
     }
 
@@ -26,9 +31,11 @@ class PadronicServiceProvider extends ServiceProvider
         $contents = file_get_contents($file);
         $provider = 'Zucoprince\Padronic\PadronicServiceProvider::class,';
 
-        $put = str_replace("'providers' => ServiceProvider::defaultProviders()->merge([", "'providers' => ServiceProvider::defaultProviders()->merge([\n        $provider", $contents);
+        if (strpos($contents, $provider) === false) {
+            $put = str_replace("'providers' => ServiceProvider::defaultProviders()->merge([", "'providers' => ServiceProvider::defaultProviders()->merge([\n        $provider", $contents);
 
-        file_put_contents($file, $put);
+            file_put_contents($file, $put);
+        }
     }
 
 }
