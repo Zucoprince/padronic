@@ -8,7 +8,7 @@ class PadronicServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        // Aqui você pode fazer vinculações no contêiner de serviços, se necessário.
+        $this->app->register(PadronicSetupServiceProvider::class);
     }
 
     public function boot()
