@@ -1,15 +1,15 @@
 {
-    "name": "zuco/padronic",
+    "name": "zucoprince/padronic",
     "description": "Contains command files that automatically create multiple files for your default laravel project.",
     "type": "library",
-    "version": "1.0.1",
+    "version": "0.0.1",
     "require": {
         "illuminate/filesystem": "^10.41"
     },
-    "license": "GPL-3.0-or-later",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Zuco\\Padronic\\": "src/"
+            "Zucoprince\\Padronic\\": "src/"
         }
     },
     "authors": [
