@@ -9,7 +9,6 @@ class PadronicServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->addProviderToConfig();
         $this->addCommandsToCommands();
     }
 
@@ -30,17 +29,9 @@ class PadronicServiceProvider extends ServiceProvider
 
         foreach ($files as $file) {
             File::copy($file->getPathname(), $commandsDir . '/' . $file->getFilename());
-        }
-    }
-
-    protected function addProviderToConfig()
-    {
-        $file = base_path('config/app.php');
-        $contents = file_get_contents($file);
-        $provider = 'Zucoprince\Padronic\PadronicServiceProvider::class,';
-
-        if (strpos($contents, $provider) === false) {
-            $put = str_replace("'providers' => ServiceProvider::defaultProviders()->merge([", "'providers' => ServiceProvider::defaultProviders()->merge([\n        $provider", $contents);
+            $change = $commandsDir . '/' . $file->getFilename();
+            $contents = file_get_contents($change);
+            $put = str_replace("namespace Zucoprince\Padronic\Commands;", "namespace App\Console\Commands", $contents);
 
             file_put_contents($file, $put);
         }
