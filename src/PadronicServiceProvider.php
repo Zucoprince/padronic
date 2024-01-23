@@ -10,16 +10,6 @@ class PadronicServiceProvider extends ServiceProvider
     {
         //
     }
-
-    public function boot()
-    {
-        $this->addProviderToConfig();
-
-        $this->publishes([
-            __DIR__ . '/Commands' => app_path('Console/Commands'),
-        ], 'padronic-commands');
-    }
-
     protected function addProviderToConfig()
     {
         $file = base_path('config/app.php');
@@ -30,5 +20,13 @@ class PadronicServiceProvider extends ServiceProvider
 
         file_put_contents($file, $put);
     }
+
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__ . '/Commands' => app_path('Console/Commands'),
+        ], 'padronic-commands');
+    }
+
 
 }
