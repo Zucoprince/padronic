@@ -10,9 +10,15 @@ class PadronicServiceProvider extends ServiceProvider
     public function register()
     {
         $this->addProviderToConfig();
+        $this->addCommandsToCommands();
     }
 
     public function boot()
+    {
+       //
+    }
+
+    protected function addCommandsToCommands()
     {
         $commandsDir = base_path('app/Console/Commands');
 
@@ -22,7 +28,7 @@ class PadronicServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/Commands' => $commandsDir,
-        ]);
+        ], 'padronic-commands');
     }
 
     protected function addProviderToConfig()
