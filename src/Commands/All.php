@@ -1,6 +1,6 @@
 <?php
 
-namespace Zucoprince\Padronic;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
