@@ -1,8 +1,8 @@
 {
     "name": "zucoprince/padronic",
-    "description": "Contains command files that automatically create multiple files for your default laravel project.",
+    "description": "Contains command files that automatically create multiple files for your default Laravel project.",
     "type": "library",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "require": {
         "illuminate/filesystem": "^10.41"
     },
@@ -18,5 +18,22 @@
             "email": "pedro.zucolo@outlook.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zucoprince\\Padronic\\PadronicServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php artisan package:discover --ansi"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
 }
