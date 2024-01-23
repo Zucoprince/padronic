@@ -28,7 +28,9 @@
     },
     "scripts": {
         "post-autoload-dump": [
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan vendor:publish --provider=Zucoprince\\Padronic\\PadronicServiceProvider",
+            "@php artisan optimize"
         ]
     },
     "config": {

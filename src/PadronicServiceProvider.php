@@ -14,7 +14,7 @@ class PadronicServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/Commands' => app_path('app/Console/Commands'),
+            __DIR__ . '/Commands' => app_path('Console/Commands'),
         ], 'padronic-commands');
     }
 

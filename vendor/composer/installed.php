@@ -1,12 +1,12 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0',
-        'version' => '1.0.0.0',
-        'type' => 'composer-plugin',
+        'pretty_version' => '0.0.2',
+        'version' => '0.0.2.0',
+        'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'reference' => NULL,
-        'name' => 'zuco/padronic',
+        'name' => 'zucoprince/padronic',
         'dev' => true,
     ),
     'versions' => array(
@@ -89,33 +89,6 @@
             'install_path' => __DIR__ . '/../graham-campbell/result-type',
             'aliases' => array(),
             'reference' => 'fbd48bce38f73f8a4ec8583362e732e4095e5862',
-            'dev_requirement' => false,
-        ),
-        'guzzlehttp/guzzle' => array(
-            'pretty_version' => '7.8.1',
-            'version' => '7.8.1.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../guzzlehttp/guzzle',
-            'aliases' => array(),
-            'reference' => '41042bc7ab002487b876a0683fc8dce04ddce104',
-            'dev_requirement' => false,
-        ),
-        'guzzlehttp/promises' => array(
-            'pretty_version' => '2.0.2',
-            'version' => '2.0.2.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../guzzlehttp/promises',
-            'aliases' => array(),
-            'reference' => 'bbff78d96034045e58e13dedd6ad91b5d1253223',
-            'dev_requirement' => false,
-        ),
-        'guzzlehttp/psr7' => array(
-            'pretty_version' => '2.6.2',
-            'version' => '2.6.2.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../guzzlehttp/psr7',
-            'aliases' => array(),
-            'reference' => '45b30f99ac27b5ca93cb4831afe16285f57b8221',
             'dev_requirement' => false,
         ),
         'guzzlehttp/uri-template' => array(
@@ -334,15 +307,6 @@
             'reference' => 'da31969bd35e6ee0bbcd9e876f88952dc754b012',
             'dev_requirement' => false,
         ),
-        'laravel/laravel' => array(
-            'pretty_version' => 'v10.3.2',
-            'version' => '10.3.2.0',
-            'type' => 'project',
-            'install_path' => __DIR__ . '/../laravel/laravel',
-            'aliases' => array(),
-            'reference' => '1a4d1dc81f7924259885250d011ffad24728cd86',
-            'dev_requirement' => false,
-        ),
         'laravel/prompts' => array(
             'pretty_version' => 'v0.1.15',
             'version' => '0.1.15.0',
@@ -352,15 +316,6 @@
             'reference' => 'd814a27514d99b03c85aa42b22cfd946568636c1',
             'dev_requirement' => false,
         ),
-        'laravel/sanctum' => array(
-            'pretty_version' => 'v3.3.3',
-            'version' => '3.3.3.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../laravel/sanctum',
-            'aliases' => array(),
-            'reference' => '8c104366459739f3ada0e994bcd3e6fd681ce3d5',
-            'dev_requirement' => false,
-        ),
         'laravel/serializable-closure' => array(
             'pretty_version' => 'v1.3.3',
             'version' => '1.3.3.0',
@@ -368,15 +323,6 @@
             'install_path' => __DIR__ . '/../laravel/serializable-closure',
             'aliases' => array(),
             'reference' => '3dbf8a8e914634c48d389c1234552666b3d43754',
-            'dev_requirement' => false,
-        ),
-        'laravel/tinker' => array(
-            'pretty_version' => 'v2.9.0',
-            'version' => '2.9.0.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../laravel/tinker',
-            'aliases' => array(),
-            'reference' => '502e0fe3f0415d06d5db1f83a472f0f3b754bafe',
             'dev_requirement' => false,
         ),
         'league/commonmark' => array(
@@ -466,15 +412,6 @@
             'reference' => 'd3ad0aa3b9f934602cb3e3902ebccf10be34d218',
             'dev_requirement' => false,
         ),
-        'nikic/php-parser' => array(
-            'pretty_version' => 'v5.0.0',
-            'version' => '5.0.0.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../nikic/php-parser',
-            'aliases' => array(),
-            'reference' => '4a21235f7e56e713259a6f76bf4b5ea08502b9dc',
-            'dev_requirement' => false,
-        ),
         'nunomaduro/termwind' => array(
             'pretty_version' => 'v1.15.1',
             'version' => '1.15.1.0',
@@ -538,51 +475,6 @@
                 0 => '1.0',
             ),
         ),
-        'psr/http-client' => array(
-            'pretty_version' => '1.0.3',
-            'version' => '1.0.3.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../psr/http-client',
-            'aliases' => array(),
-            'reference' => 'bb5906edc1c324c9a05aa0873d40117941e5fa90',
-            'dev_requirement' => false,
-        ),
-        'psr/http-client-implementation' => array(
-            'dev_requirement' => false,
-            'provided' => array(
-                0 => '1.0',
-            ),
-        ),
-        'psr/http-factory' => array(
-            'pretty_version' => '1.0.2',
-            'version' => '1.0.2.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../psr/http-factory',
-            'aliases' => array(),
-            'reference' => 'e616d01114759c4c489f93b099585439f795fe35',
-            'dev_requirement' => false,
-        ),
-        'psr/http-factory-implementation' => array(
-            'dev_requirement' => false,
-            'provided' => array(
-                0 => '1.0',
-            ),
-        ),
-        'psr/http-message' => array(
-            'pretty_version' => '2.0',
-            'version' => '2.0.0.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../psr/http-message',
-            'aliases' => array(),
-            'reference' => '402d35bcb92c70c026d1a6a9883f06b2ead23d71',
-            'dev_requirement' => false,
-        ),
-        'psr/http-message-implementation' => array(
-            'dev_requirement' => false,
-            'provided' => array(
-                0 => '1.0',
-            ),
-        ),
         'psr/log' => array(
             'pretty_version' => '3.0.0',
             'version' => '3.0.0.0',
@@ -595,8 +487,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '3.0.0',
+                0 => '3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -613,24 +505,6 @@
             'provided' => array(
                 0 => '1.0|2.0|3.0',
             ),
-        ),
-        'psy/psysh' => array(
-            'pretty_version' => 'v0.12.0',
-            'version' => '0.12.0.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../psy/psysh',
-            'aliases' => array(),
-            'reference' => '750bf031a48fd07c673dbe3f11f72362ea306d0d',
-            'dev_requirement' => false,
-        ),
-        'ralouphie/getallheaders' => array(
-            'pretty_version' => '3.0.3',
-            'version' => '3.0.3.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../ralouphie/getallheaders',
-            'aliases' => array(),
-            'reference' => '120b605dfeb996808c31b6477290a714d356e822',
-            'dev_requirement' => false,
         ),
         'ramsey/collection' => array(
             'pretty_version' => '2.0.0',
@@ -956,10 +830,10 @@
             'reference' => '11cb2199493b2f8a3b53e7f19068fc6aac760991',
             'dev_requirement' => false,
         ),
-        'zuco/padronic' => array(
-            'pretty_version' => '1.0.0',
-            'version' => '1.0.0.0',
-            'type' => 'composer-plugin',
+        'zucoprince/padronic' => array(
+            'pretty_version' => '0.0.2',
+            'version' => '0.0.2.0',
+            'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'reference' => NULL,
