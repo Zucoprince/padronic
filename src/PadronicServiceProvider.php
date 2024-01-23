@@ -10,7 +10,6 @@ class PadronicServiceProvider extends ServiceProvider
     public function register()
     {
         $this->addProviderToConfig();
-        $this->boot();
     }
 
     public function boot()
@@ -23,7 +22,7 @@ class PadronicServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/Commands' => $commandsDir,
-        ], 'padronic-commands');
+        ]);
     }
 
     protected function addProviderToConfig()
