@@ -9,7 +9,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Zucoprince\\Padronic\\": "src/"
+            "Zucoprince\\Padronic\\": "src/",
+            "Zucoprince\\Padronic\\Commands\\": "src/Commands/"
         }
     },
     "authors": [
