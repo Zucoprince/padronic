@@ -15,7 +15,7 @@ class PadronicServiceProvider extends ServiceProvider
 
     public function boot()
     {
-       //
+        //
     }
 
     protected function addCommandsToCommands()
@@ -26,9 +26,11 @@ class PadronicServiceProvider extends ServiceProvider
             File::makeDirectory($commandsDir, 0755, true);
         }
 
-        $this->publishes([
-            __DIR__ . '/Commands' => $commandsDir,
-        ], 'padronic-commands');
+        $files = File::allFiles(__DIR__ . '/Commands');
+
+        foreach ($files as $file) {
+            File::copy($file->getPathname(), $commandsDir . '/' . $file->getFilename());
+        }
     }
 
     protected function addProviderToConfig()
