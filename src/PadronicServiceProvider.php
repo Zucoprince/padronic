@@ -4,17 +4,13 @@ namespace Zucoprince\Padronic;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Process\Process;
 
 class PadronicServiceProvider extends ServiceProvider
 {
     public function register()
     {
         $this->addCommandsToCommands();
-    }
-
-    public function boot()
-    {
-        //
     }
 
     protected function addCommandsToCommands()
@@ -35,6 +31,67 @@ class PadronicServiceProvider extends ServiceProvider
 
             file_put_contents($file, $put);
         }
+    }
+
+    protected function addApiResponserTrait()
+    {
+        $traitsDir = base_path('app/Traits');
+        $apiResponserFilePath = $traitsDir . DIRECTORY_SEPARATOR . 'ApiResponser.php';
+        $apiResponserContent = $this->apiReponserTxt();
+
+        if (!File::isDirectory($traitsDir)) {
+            File::makeDirectory($traitsDir, 0755, true);
+        }
+
+        if (!File::exists($apiResponserFilePath)) {
+            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                exec("echo. > $apiResponserFilePath");
+                echo "O arquivo $apiResponserFilePath foi criado com sucesso!";
+            } else {
+                exec("touch $apiResponserFilePath");
+                echo "O arquivo $apiResponserFilePath foi criado com sucesso!";
+            }
+
+            File::append($apiResponserFilePath, $apiResponserContent);
+
+            echo "O arquivo $apiResponserFilePath foi modificado com sucesso!";
+        } else {
+            echo "O arquivo $apiResponserFilePath já existe no contexto atual.";
+        }
+    }
+
+    protected function apiReponserTxt()
+    {
+        return "<?php
+
+namespace App\Traits;
+        
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+
+trait ApiResponser
+{
+    // Resposta de sucesso para a API.
+
+    public function successResponse(\$data = null, \$code = Response::HTTP_OK): JsonResponse
+    {
+        return response()->json(
+            \$data,
+            \$code
+        )->header('Content-Type', 'application/json');
+    }
+
+
+    // * Resposta de erro para a API.
+
+    public function errorResponse(\$message, \$code): JsonResponse
+    {
+        return response()->json(([
+            'message' => \$message,
+            'code' => \$code
+        ]), \$code);
+    }
+}";
     }
 
 }
