@@ -116,7 +116,7 @@ class All extends Command
             echo $this->alert("O arquivo $repositoryFilePath já existe no contexto atual.");
 
             while (!in_array($response, $validResponses)) {
-                $response = "\033[1;33m" . strtoupper($this->ask("Gostaria de reescrever o arquivo $fileName" . "Repository.php para o padrão do Padronic? - [s/n]")) . "\033[0m";
+                $response = strtoupper($this->ask("Gostaria de reescrever o arquivo $fileName" . "Repository.php para o padrão do Padronic? - [s/n]"));
             }
 
             if (in_array($response, ['S', 'SIM'])) {
@@ -145,7 +145,7 @@ class All extends Command
 
         if (strpos($content, $especificContent) === false) {
             while (!in_array($response, $validResponses)) {
-                $response = "\033[1;33m" . strtoupper($this->ask("Gostaria de reescrever o arquivo $fileName" . "Controller.php para o padrão do Padronic? - [s/n]")) . "\033[0m";
+                $response = strtoupper($this->ask("Gostaria de reescrever o arquivo $fileName" . "Controller.php para o padrão do Padronic? - [s/n]"));
             }
 
             if (in_array($response, ['S', 'SIM'])) {
@@ -192,7 +192,7 @@ class All extends Command
             echo $this->alert("O arquivo $routeFilePath já existe no contexto atual.");
 
             while (!in_array($response, $validResponses)) {
-                $response = "\033[1;33m" . strtoupper($this->ask("Gostaria de reescrever o arquivo $fileName" . ".php (Routes) para o padrão do Padronic? - [s/n]")) . "\033[0m";
+                $response = strtoupper($this->ask("Gostaria de reescrever o arquivo $fileName" . ".php (Routes) para o padrão do Padronic? - [s/n]"));
             }
 
             if (in_array($response, ['S', 'SIM'])) {
