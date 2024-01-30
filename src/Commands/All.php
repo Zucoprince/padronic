@@ -92,6 +92,9 @@ class All extends Command
     {
         $fileNameLowerVar = '$' . strtolower($fileName);
         $repositoriesPath = base_path('app/Http/Repositories');
+        $repositoryDefault = $this->repositoryTxt($fileName, $fileNameLowerVar);
+        $validResponses = ['S', 'N', 'SIM', 'NAO', 'NÃO'];
+        $response = [];
 
         if (!File::isDirectory($repositoriesPath)) {
             File::makeDirectory($repositoriesPath, 0755, true);
@@ -99,20 +102,31 @@ class All extends Command
 
         $repositoryFilePath = $repositoriesPath . DIRECTORY_SEPARATOR . $fileName . 'Repository.php';
 
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            !File::exists($repositoryFilePath) && exec("echo. > $repositoryFilePath");
-        } else {
-            !File::exists($repositoryFilePath) && exec("touch $repositoryFilePath");
-        }
-
-
         if (!File::exists($repositoryFilePath)) {
-            $repositoryDefault = $this->repositoryTxt($fileName, $fileNameLowerVar);
+            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                exec("echo. > $repositoryFilePath");
+            } else {
+                exec("touch $repositoryFilePath");
+            }
+
             File::append($repositoryFilePath, $repositoryDefault);
 
             return $this->info("O arquivo $repositoryFilePath criado com sucesso!");
         } else {
-            return $this->alert("O arquivo $repositoryFilePath já existe no contexto atual.");
+            echo $this->alert("O arquivo $repositoryFilePath já existe no contexto atual.");
+
+            while (!in_array($response, $validResponses)) {
+                $response = "\033[1;33m" . strtoupper($this->ask("Gostaria de reescrever o arquivo $fileName" . "Repository.php para o padrão do Padronic? - [s/n]")) . "\033[0m";
+            }
+
+            if (in_array($response, ['S', 'SIM'])) {
+                file_put_contents($repositoryFilePath, '');
+                File::append($repositoryFilePath, $repositoryDefault);
+
+                return $this->info("O arquivo $repositoryFilePath foi alterado com sucesso!");
+            } else {
+                return $this->alert("O arquivo $repositoryFilePath não foi alterado");
+            }
         }
     }
 
@@ -121,20 +135,32 @@ class All extends Command
         $controllerPath = base_path('app/Http/Controllers');
         $controllerFilePath = $controllerPath . DIRECTORY_SEPARATOR . $fileName . 'Controller.php';
         $controllerDefault = $this->controllerTxt($fileName);
+        $content = File::get($controllerFilePath);
+        $especificContent = "class $fileName extends Controller
+{
+    //
+}";
         $validResponses = ['S', 'N', 'SIM', 'NAO', 'NÃO'];
         $response = [];
 
-        while (!in_array($response, $validResponses)) {
-            $response = strtoupper($this->ask("Gostaria de reescrever o arquivo $fileName" . "Controller.php para o padrão do Padronic? - [s/n]"));
-        }
+        if (strpos($content, $especificContent) === false) {
+            while (!in_array($response, $validResponses)) {
+                $response = "\033[1;33m" . strtoupper($this->ask("Gostaria de reescrever o arquivo $fileName" . "Controller.php para o padrão do Padronic? - [s/n]")) . "\033[0m";
+            }
 
-        if (in_array($response, ['S', 'SIM'])) {
+            if (in_array($response, ['S', 'SIM'])) {
+                file_put_contents($controllerFilePath, '');
+                File::append($controllerFilePath, $controllerDefault);
+
+                return $this->info("O arquivo $controllerFilePath foi alterado com sucesso!");
+            } else {
+                return $this->alert("O arquivo $controllerFilePath não foi alterado");
+            }
+        } else {
             file_put_contents($controllerFilePath, '');
             File::append($controllerFilePath, $controllerDefault);
 
             return $this->info("O arquivo $controllerFilePath foi alterado com sucesso!");
-        } else {
-            return $this->alert("O arquivo $controllerFilePath não foi alterado");
         }
     }
 
@@ -142,6 +168,9 @@ class All extends Command
     {
         $fileNameLower = strtolower($fileName);
         $routesPath = base_path('routes/api');
+        $routeDefault = $this->routeTxt($fileName, $fileNameLower);
+        $validResponses = ['S', 'N', 'SIM', 'NAO', 'NÃO'];
+        $response = [];
 
         if (!File::isDirectory($routesPath)) {
             File::makeDirectory($routesPath, 0755, true);
@@ -149,20 +178,31 @@ class All extends Command
 
         $routeFilePath = $routesPath . DIRECTORY_SEPARATOR . $fileName . '.php';
 
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            !File::exists($routeFilePath) && exec("echo. > $routeFilePath");
-        } else {
-            !File::exists($routeFilePath) && exec("touch $routeFilePath");
-        }
-
-
         if (!File::exists($routeFilePath)) {
-            $routeDefault = $this->routeTxt($fileName, $fileNameLower);
+            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                exec("echo. > $routeFilePath");
+            } else {
+                exec("touch $routeFilePath");
+            }
+
             File::append($routeFilePath, $routeDefault);
 
             return $this->info("O arquivo $routeFilePath foi criado com sucesso!");
         } else {
-            return $this->alert("O arquivo $routeFilePath já existe no contexto atual.");
+            echo $this->alert("O arquivo $routeFilePath já existe no contexto atual.");
+
+            while (!in_array($response, $validResponses)) {
+                $response = "\033[1;33m" . strtoupper($this->ask("Gostaria de reescrever o arquivo $fileName" . ".php (Routes) para o padrão do Padronic? - [s/n]")) . "\033[0m";
+            }
+
+            if (in_array($response, ['S', 'SIM'])) {
+                file_put_contents($routeFilePath, '');
+                File::append($routeFilePath, $routeDefault);
+
+                return $this->info("O arquivo $routeFilePath foi alterado com sucesso!");
+            } else {
+                return $this->alert("O arquivo $routeFilePath não foi alterado");
+            }
         }
     }
 
