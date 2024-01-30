@@ -135,15 +135,10 @@ class All extends Command
         $controllerPath = base_path('app/Http/Controllers');
         $controllerFilePath = $controllerPath . DIRECTORY_SEPARATOR . $fileName . 'Controller.php';
         $controllerDefault = $this->controllerTxt($fileName);
-        $content = File::get($controllerFilePath);
-        $especificContent = "class $fileName extends Controller
-{
-    //
-}";
         $validResponses = ['S', 'N', 'SIM', 'NAO', 'NÃO'];
         $response = [];
 
-        if (strpos($content, $especificContent) === false) {
+        if (count(get_class_methods($fileName . 'Controller')) > 0) {
             while (!in_array($response, $validResponses)) {
                 $response = strtoupper($this->ask("Gostaria de reescrever o arquivo $fileName" . "Controller.php para o padrão do Padronic? - [s/n]"));
             }
