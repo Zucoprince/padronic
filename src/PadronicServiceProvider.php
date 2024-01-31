@@ -10,6 +10,7 @@ class PadronicServiceProvider extends ServiceProvider
 {
     public function install()
     {
+        \Illuminate\Support\Facades\Log::alert('Install method called!');
         // Aqui você pode chamar os métodos que deseja executar durante a instalação/atualização
         $this->addCommandsToCommands();
         $this->addApiResponserTrait();
