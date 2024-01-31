@@ -8,9 +8,11 @@ use Symfony\Component\Process\Process;
 
 class PadronicServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function install()
     {
-        
+        // Aqui você pode chamar os métodos que deseja executar durante a instalação/atualização
+        $this->addCommandsToCommands();
+        $this->addApiResponserTrait();
     }
 
     protected function addCommandsToCommands()

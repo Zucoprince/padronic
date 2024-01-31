@@ -32,6 +32,12 @@
             "@php artisan vendor:publish --provider=Zucoprince\\Padronic\\PadronicServiceProvider",
             "@php artisan vendor:publish --tag=padronic-commands",
             "@php artisan optimize"
+        ],
+        "post-install-cmd": [
+            "Zucoprince\\Padronic\\PadronicServiceProvider::install"
+        ],
+        "post-update-cmd": [
+            "Zucoprince\\Padronic\\PadronicServiceProvider::install"
         ]
     }
 }
