@@ -1,7 +1,7 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '0.0.2',
-        'version' => '0.0.2.0',
+        'pretty_version' => '0.0.3',
+        'version' => '0.0.3.0',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -831,8 +831,8 @@
             'dev_requirement' => false,
         ),
         'zucoprince/padronic' => array(
-            'pretty_version' => '0.0.2',
-            'version' => '0.0.2.0',
+            'pretty_version' => '0.0.3',
+            'version' => '0.0.3.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -4,14 +4,21 @@ namespace Zucoprince\Padronic;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Process\Process;
 
 class PadronicServiceProvider extends ServiceProvider
 {
-    public function install()
+    public function boot()
     {
-        \Illuminate\Support\Facades\Log::alert('Install method called!');
-        // Aqui você pode chamar os métodos que deseja executar durante a instalação/atualização
+        if (getenv('DOCKER_HOST')) {
+            exec("docker compose run --rm artisan vendor:publish --provider=Zucoprince\\Padronic\\PadronicServiceProvider");
+            exec("docker compose run --rm artisan vendor:publish --tag=padronic-commands");
+            exec("docker compose run --rm artisan optimize");
+        } else {
+            exec("@php artisan vendor:publish --provider=Zucoprince\\Padronic\\PadronicServiceProvider");
+            exec("@php artisan vendor:publish --tag=padronic-commands");
+            exec("@php artisan optimize");
+        }
+
         $this->addCommandsToCommands();
         $this->addApiResponserTrait();
     }
