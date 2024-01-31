@@ -10,8 +10,7 @@ class PadronicServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->addCommandsToCommands();
-        $this->addApiResponserTrait();
+        
     }
 
     protected function addCommandsToCommands()
