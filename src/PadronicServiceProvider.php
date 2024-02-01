@@ -3,24 +3,30 @@
 namespace Zucoprince\Padronic;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 
 class PadronicServiceProvider extends ServiceProvider
 {
+    protected $all;
+    protected $rmAll;
+    protected $apiResponser;
+
+    public function __construct()
+    {
+        $this->all = File::exists(base_path('app/Console/Commands/All.php'));
+        $this->rmAll = File::exists(base_path('app/Console/Commands/RmAll.php'));
+        $this->apiResponser = File::exists(base_path('app/Traits/ApiResponser.php'));
+    }
+
     public function boot()
     {
-        if (getenv('DOCKER_HOST')) {
-            exec("docker compose run --rm artisan vendor:publish --provider=Zucoprince\\Padronic\\PadronicServiceProvider");
-            exec("docker compose run --rm artisan vendor:publish --tag=padronic-commands");
-            exec("docker compose run --rm artisan optimize");
-        } else {
-            exec("@php artisan vendor:publish --provider=Zucoprince\\Padronic\\PadronicServiceProvider");
-            exec("@php artisan vendor:publish --tag=padronic-commands");
-            exec("@php artisan optimize");
+        if (!$this->all || !$this->rmAll) {
+            $this->addCommandsToCommands();
         }
-
-        $this->addCommandsToCommands();
-        $this->addApiResponserTrait();
+        if (!$this->apiResponser) {
+            $this->addApiResponserTrait();
+        }
     }
 
     protected function addCommandsToCommands()
