@@ -327,13 +327,13 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\\{$fileName}Repository;
 use App\Http\Requests\\{$fileName}Request;
 use App\Http\Resources\\{$fileName}Resource;
-use App\Traits\ApiResponser;
+use App\Traits\CodeResponser;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class {$fileName}Controller extends Controller
 {
-    use ApiResponser;
+    use CodeResponser;
 
     protected \$repository;
 
@@ -345,9 +345,14 @@ class {$fileName}Controller extends Controller
     public function callGetAll(): JsonResponse
     {
         \$data = \$this->repository->getAll();
-        empty(\$data) || \$data === null ?
-            \$response = \$this->errorResponse('Não foi possível trazer nada de {$fileName}, está vazio ou nulo.', Response::HTTP_EXPECTATION_FAILED) :
-            \$response = \$this->successResponse({$fileName}Resource::collection(\$data)->response()->getData());
+
+        if (empty(\$data) || \$data === null) {
+            \$response = \$this->codeResponse(204);
+        } elseif (is_int(\$data)) {
+            \$response = \$this->codeResponse(\$data);
+        } else {
+            \$response = \$this->codeResponse(200, {$fileName}Resource::collection(\$data)->response()->getData());
+        }
 
         return \$response;
     }
@@ -356,9 +361,13 @@ class {$fileName}Controller extends Controller
     {
         \$data = \$this->repository->create(\$request->all());
 
-        empty(\$data) || \$data === null ?
-            \$response = \$this->errorResponse('Não foi possível criar uma instância de {$fileName}, está vazio ou nulo.', Response::HTTP_EXPECTATION_FAILED) :
-            \$response = \$this->successResponse(new {$fileName}Resource(\$data));
+        if (empty(\$data) || \$data === null) {
+            \$response = \$this->codeResponse(204);
+        } elseif (is_int(\$data)) {
+            \$response = \$this->codeResponse(\$data);
+        } else {
+            \$response = \$this->codeResponse(201, new {$fileName}Resource(\$data)->response()->getData());
+        }
 
         return \$response;
     }
@@ -367,9 +376,13 @@ class {$fileName}Controller extends Controller
     {
         \$data = \$this->repository->getById(\$id);
 
-        empty(\$data) || \$data === null ?
-            \$response = \$this->errorResponse('Não foi possível trazer nada de {$fileName}, está vazio ou nulo.', Response::HTTP_EXPECTATION_FAILED) :
-            \$response = \$this->successResponse(new {$fileName}Resource(\$data));
+        if (empty(\$data) || \$data === null) {
+            \$response = \$this->codeResponse(204);
+        } elseif (is_int(\$data)) {
+            \$response = \$this->codeResponse(\$data);
+        } else {
+            \$response = \$this->codeResponse(200, new {$fileName}Resource(\$data)->response()->getData());
+        }
 
         return \$response;
     }
@@ -378,9 +391,13 @@ class {$fileName}Controller extends Controller
     {
         \$data = \$this->repository->update(\$id, \$request->all());
 
-        empty(\$data) || \$data === null ?
-            \$response = \$this->errorResponse('Não foi possível trazer nada de {$fileName}, está vazio ou nulo.', Response::HTTP_EXPECTATION_FAILED) :
-            \$response = \$this->successResponse(new {$fileName}Resource(\$data));
+        if (empty(\$data) || \$data === null) {
+            \$response = \$this->codeResponse(204);
+        } elseif (is_int(\$data)) {
+            \$response = \$this->codeResponse(\$data);
+        } else {
+            \$response = \$this->codeResponse(200, new {$fileName}Resource(\$data)->response()->getData());
+        }
 
         return \$response;
     }
@@ -389,15 +406,15 @@ class {$fileName}Controller extends Controller
     {
         \$data = \$this->repository->delete(\$id);
 
-        empty(\$data) || \$data === null ?
-            \$response = \$this->errorResponse('Não foi possível deletar {$fileName}, está vazio ou nulo.', Response::HTTP_EXPECTATION_FAILED) :
-            \$response = \$this->successResponse(\$data);
+        if (is_int(\$data)) {
+            \$response = \$this->codeResponse(\$data);
+        } else {
+            \$response = \$this->codeResponse(200, new {$fileName}Resource(\$data)->response()->getData());
+        }
 
         return \$response;
     }
-}
-
-        ";
+}";
     }
 
     public function routeTxt($fileName, $fileNameLower)
