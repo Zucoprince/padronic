@@ -366,7 +366,7 @@ class {$fileName}Controller extends Controller
         } elseif (is_int(\$data)) {
             \$response = \$this->codeResponse(\$data);
         } else {
-            \$response = \$this->codeResponse(201, new {$fileName}Resource(\$data)->response()->getData());
+            \$response = \$this->codeResponse(201, new {$fileName}Resource(\$data));
         }
 
         return \$response;
@@ -381,7 +381,7 @@ class {$fileName}Controller extends Controller
         } elseif (is_int(\$data)) {
             \$response = \$this->codeResponse(\$data);
         } else {
-            \$response = \$this->codeResponse(200, new {$fileName}Resource(\$data)->response()->getData());
+            \$response = \$this->codeResponse(200, new {$fileName}Resource(\$data));
         }
 
         return \$response;
@@ -396,7 +396,7 @@ class {$fileName}Controller extends Controller
         } elseif (is_int(\$data)) {
             \$response = \$this->codeResponse(\$data);
         } else {
-            \$response = \$this->codeResponse(200, new {$fileName}Resource(\$data)->response()->getData());
+            \$response = \$this->codeResponse(200, new {$fileName}Resource(\$data));
         }
 
         return \$response;
@@ -409,7 +409,7 @@ class {$fileName}Controller extends Controller
         if (is_int(\$data)) {
             \$response = \$this->codeResponse(\$data);
         } else {
-            \$response = \$this->codeResponse(200, new {$fileName}Resource(\$data)->response()->getData());
+            \$response = \$this->codeResponse(200, new {$fileName}Resource(\$data));
         }
 
         return \$response;
