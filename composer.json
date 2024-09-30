@@ -1,34 +1,37 @@
 {
-    "name": "zucoprince/padronic",
-    "description": "Contains command files that automatically create multiple files for your default Laravel project.",
-    "type": "library",
-    "version": "0.0.4",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Zucoprince\\Padronic\\": "src/",
-            "Zucoprince\\Padronic\\Commands\\": "src/Commands/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Pedro Zucolo",
-            "email": "pedro.zucolo@outlook.com"
-        }
-    ],
-    "minimum-stability": "stable",
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Zucoprince\\Padronic\\PadronicServiceProvider"
-            ]
-        }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "@php artisan vendor:publish --provider=Zucoprince\\Padronic\\PadronicServiceProvider",
-            "@php artisan vendor:publish --tag=padronic-commands",
-            "@php artisan optimize"
-        ]
+  "name": "zucoprince/padronic",
+  "description": "Contains command files that automatically create multiple files for your default Laravel project.",
+  "type": "library",
+  "version": "0.0.4",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Zucoprince\\Padronic\\": "src/",
+      "Zucoprince\\Padronic\\Commands\\": "src/Commands/"
     }
+  },
+  "require": {
+    "illuminate/filesystem": "*"
+  },
+  "authors": [
+    {
+      "name": "Pedro Zucolo",
+      "email": "pedro.zucolo@outlook.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Zucoprince\\Padronic\\PadronicServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "@php artisan vendor:publish --provider=Zucoprince\\Padronic\\PadronicServiceProvider",
+      "@php artisan vendor:publish --tag=padronic-commands",
+      "@php artisan optimize"
+    ]
+  }
 }
